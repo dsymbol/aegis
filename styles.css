@@ -1,0 +1,313 @@
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* Base styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f5f7fa;
+    color: #1a1f36;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #1a1f36;
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.actions button:hover {
+    opacity: 0.85;
+}
+
+#addBtn {
+    background-color: #2196F3;
+}
+
+/* Entry styling */
+.entries {
+    display: grid;
+    gap: 1rem;
+}
+
+.entry {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.entry h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #1a1f36;
+}
+
+.entry-code {
+    font-family: 'SF Mono', 'Roboto Mono', monospace;
+    font-size: 1.8rem;  /* Slightly larger */
+    font-weight: 600;   /* Bolder */
+    padding: 0.5rem 0;
+    color: #0F172A;     /* Darker, more readable color */
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* New progress bar styling */
+.entry-code::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: #E2E8F0;  /* Light gray base */
+    width: 100%;
+    z-index: 1;
+}
+
+.entry-code::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: #3B82F6;  /* Blue progress bar */
+    width: var(--progress, 100%);
+    transition: width 0.1s linear;
+    z-index: 2;
+}
+
+.entry-details {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+.entry-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.entry-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.entry-actions button:hover {
+    opacity: 0.85;
+}
+
+.entry-actions button[data-action="edit"] {
+    background-color: #4CAF50;
+}
+
+.entry-actions button[data-action="copy"] {
+    background-color: #2196F3;
+}
+
+.entry-actions button[data-action="delete"] {
+    background-color: #f44336;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 400px;  /* Set fixed width instead of max-width */
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1f36;
+}
+
+/* Update form styling to ensure inputs take full width */
+#addEntryForm,
+#editEntryForm {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    box-sizing: border-box;  /* Include padding in width calculation */
+    padding: 0.75rem;
+    margin: 0;  /* Remove margin to prevent asymmetry */
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 1.5rem;
+    justify-content: flex-end;  /* Align buttons to the right */
+}
+
+.modal-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.modal-actions button[type="submit"] {
+    background-color: #2196F3;
+    color: white;
+}
+
+.modal-actions button[type="button"] {
+    background-color: #6b7280;
+    color: white;
+}
+
+.modal-actions button:hover {
+    opacity: 0.85;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state svg {
+    color: #94A3B8;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    color: #1E293B;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+    color: #64748B;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.empty-state-button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.empty-state-button:hover {
+    opacity: 0.85;
+}
+
+.session-toggle {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.session-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.info-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #E5E7EB;
+    color: #4B5563;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: help;
+}
+
+.info-icon:hover {
+    background: #D1D5DB;
+}
+

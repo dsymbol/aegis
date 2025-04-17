@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Aegis</h1>
+            <div class="actions">
+                <button id="addBtn">Add Entry</button>
+                <button id="importBtn">Import</button>
+                <button id="exportBtn">Export</button>
+                <div class="session-toggle">
+                    <label class="session-label">
+                        <input type="checkbox" id="sessionOnly">
+                        Session Only
+                        <span class="info-icon" title="Session Only Mode">?</span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <div class="entries" id="entriesList">
+            <!-- Entries will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+
+    <!-- Add Entry Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Entry</h2>
+            <form id="addEntryForm" autocomplete="off">
+                <input type="text" id="label" placeholder="Label (e.g. Google, GitHub)">
+                <input type="text" id="secret" placeholder="Secret Key" required autocomplete="off" spellcheck="false" data-form-type="other" autocapitalize="off">
+                <select id="hashType" required>
+                    <option value="SHA1">SHA1</option>
+                    <option value="SHA256">SHA256</option>
+                    <option value="SHA512">SHA512</option>
+                </select>
+                <input type="number" id="period" value="30" min="1" required>
+                <input type="number" id="digits" value="6" min="6" max="8" required>
+                <div class="modal-actions">
+                    <button type="submit">Add Entry</button>
+                    <button type="button" id="cancelAdd">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Entry</h2>
+            <form id="editEntryForm" autocomplete="off">
+                <input type="text" id="editLabel" placeholder="Label (e.g. Google, GitHub)">
+                <input type="text" id="editSecret" placeholder="Secret Key" required autocomplete="off" spellcheck="false" data-form-type="other" autocapitalize="off">
+                <select id="editHashType" required>
+                    <option value="SHA1">SHA1</option>
+                    <option value="SHA256">SHA256</option>
+                    <option value="SHA512">SHA512</option>
+                </select>
+                <input type="number" id="editPeriod" value="30" min="1" required>
+                <input type="number" id="editDigits" value="6" min="6" max="8" required>
+                <div class="modal-actions">
+                    <button type="submit">Save Changes</button>
+                    <button type="button" id="cancelEdit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="jsOTP.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
